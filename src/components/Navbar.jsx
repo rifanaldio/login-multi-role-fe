@@ -52,6 +52,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        <a className="nav-item is-tab">
+          <span className="icon"><i className="fa fa-sign-out"></i></span>
+        </a>
       </nav>
     </div>
   );

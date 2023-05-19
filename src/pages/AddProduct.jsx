@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import FormAddProduct from "../components/FormAddProduct";
+import FormAddProduct from "../components/Product/FormProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
