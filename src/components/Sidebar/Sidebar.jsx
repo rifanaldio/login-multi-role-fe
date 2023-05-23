@@ -56,14 +56,14 @@ const Sidebar = () => {
             </div>
           )}
 
-          <p className="menu-label is-size-5 has-text-weight-bold">Settings</p>
+          {/* <p className="menu-label is-size-5 has-text-weight-bold">Settings</p>
           <ul className="menu-list">
             <li>
               <button onClick={logout} className="button is-white">
                 <IoLogOut /> Logout
               </button>
             </li>
-          </ul>
+          </ul> */}
         </aside>
       </div>
     </>

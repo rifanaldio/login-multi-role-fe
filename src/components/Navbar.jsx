@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut, reset } from "../features/authSlice";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -10,9 +11,28 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
 
   const logout = () => {
-    dispatch(LogOut());
-    dispatch(reset());
-    navigate("/");
+    Swal.fire({
+      title: "Log Out Now?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Log Out!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          dispatch(LogOut());
+          dispatch(reset());
+          navigate("/");
+        } catch (error) {
+          console.log(error);
+        }
+        Swal.fire("Terhapus!", "Data anda berhasil dihapus.", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Terhapus!", "Error", "error");
+      }
+    });
+
   };
 
   return (
@@ -24,7 +44,7 @@ const Navbar = () => {
       >
         <div className="navbar-brand">
           <NavLink to="/dashboard" className="navbar-item">
-            <img src={logo} width="112" height="28" alt="logo" />
+            <img src={logo} width="200" height="112" alt="logo" />
           </NavLink>
 
           <a
@@ -45,16 +65,16 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <button onClick={logout} className="button is-light">
-                  Log out
+                <button onClick={logout} className="button is-dark">
+                  <span className="pr-2">
+                    Log out
+                  </span>
+                  <i className="fa fa-arrow-right"></i>
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <a className="nav-item is-tab">
-          <span className="icon"><i className="fa fa-sign-out"></i></span>
-        </a>
       </nav>
     </div>
   );

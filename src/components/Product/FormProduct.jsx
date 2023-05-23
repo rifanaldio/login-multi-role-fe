@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import Alert from "../Alert/Alert";
 
-const FormAddProduct = () => {
+const FormProduct = () => {
 
   let location = useLocation()
   let data = location.state?.value
@@ -22,7 +22,8 @@ const FormAddProduct = () => {
     let postData = {
       name: name,
       price: price,
-      description: description
+      description: description,
+      qty: quantity
     }
     try {
       !data ? await axios.post("http://localhost:5000/products", postData) : axios.patch(`http://localhost:5000/products/${data.uuid}`, postData)
@@ -42,6 +43,7 @@ const FormAddProduct = () => {
       setName(data.name)
       setPrice(data.price)
       setDescription(data.description)
+      setQuantity(data.qty)
     }
   }, [data])
 
@@ -63,6 +65,7 @@ const FormAddProduct = () => {
                     key={"name"}
                     className="input"
                     value={name}
+                    maxLength={100}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Product Name"
                   />
@@ -72,15 +75,15 @@ const FormAddProduct = () => {
                 <label className="label">Quantity</label>
                 <div className="control">
                   <input
-                    // required={true}
+                    required={true}
                     min={1}
-                    step={1}
-                    max={1000}
+                    defaultValue={1}
+                    maxLength={1000}
                     type="number"
                     className="input"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
-                    placeholder="Price"
+                    placeholder="quantity"
                   />
                 </div>
               </div>
@@ -118,6 +121,7 @@ const FormAddProduct = () => {
                 <div className="control">
                   <textarea
                     required={true}
+                    maxLength={250}
                     type="text"
                     className="textarea"
                     value={description}
@@ -142,4 +146,4 @@ const FormAddProduct = () => {
   );
 };
 
-export default FormAddProduct;
+export default FormProduct;
