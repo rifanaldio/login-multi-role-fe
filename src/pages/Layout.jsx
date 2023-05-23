@@ -11,7 +11,11 @@ const Layout = ({ children }) => {
           <Sidebar />
         </div>
         <div className="column is-desktop has-background-grey-light is-large pr-5 mt-2">
-          <div className="has-background-light p-3">
+          <div style={{
+            margin : "0",
+            width : "100%",
+            height : "100%"
+          }} className="has-background-light p-3">
           <main>{children}</main>
 
           </div>
