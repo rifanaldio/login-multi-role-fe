@@ -27,9 +27,9 @@ const Navbar = () => {
         } catch (error) {
           console.log(error);
         }
-        Swal.fire("Terhapus!", "Data anda berhasil dihapus.", "success");
+        Swal.fire("Success!", "You've Got Out.", "success");
       } else if (result.isDenied) {
-        Swal.fire("Terhapus!", "Error", "error");
+        Swal.fire("Error!", "Error", "error");
       }
     });
 
